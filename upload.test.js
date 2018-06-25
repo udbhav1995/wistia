@@ -34,7 +34,7 @@ describe('Upload test->', function() {
       var $scope = $rootScope.$new();
       var controller = $controller('uploadController', { $scope: $scope });
       $scope.progress.loaded=50;
-      controller.doneRequest()
+      controller.doneRequest({},{result:{hashed_id:"url"}})
       expect($scope.progress.loaded).to.equal(0);
     });
 
@@ -50,7 +50,7 @@ describe('Upload test->', function() {
     it('loading changes to false', function() {
       var $scope = $rootScope.$new();
       var controller = $controller('uploadController', { $scope: $scope });
-      controller.doneRequest()
+      controller.doneRequest({},{result:{hashed_id:"url"}})
       expect($scope.uploading).to.equal(false);
     });
 
@@ -76,5 +76,45 @@ describe('Upload test->', function() {
     });
 
   });
+
+  describe('file upload url->', function() {
+
+    var fileUpload;
+    beforeEach(inject(function(_fileUpload_){
+      fileUpload=_fileUpload_;
+    }));
+
+    it('correct url is generated', function() {
+      var $scope = $rootScope.$new();
+      var controller = $controller('uploadController', { $scope: $scope, fileUpload: fileUpload });
+      fileUpload.defaults.done({},{result:{hashed_id:"url"}});
+      expect($scope.video_url).to.equal('https://fast.wistia.net/embed/iframe/url');
+    });
+
+  });
+
+  describe('file upload error->', function() {
+
+    var fileUpload;
+    beforeEach(inject(function(_fileUpload_){
+      fileUpload=_fileUpload_;
+    }));
+
+    it('error is initialised false', function() {
+      var $scope = $rootScope.$new();
+      var controller = $controller('uploadController', { $scope: $scope, fileUpload: fileUpload });
+      expect($scope.error_upload).to.equal(false);
+    });
+
+    it('error is returned', function() {
+      var $scope = $rootScope.$new();
+      var controller = $controller('uploadController', { $scope: $scope, fileUpload: fileUpload });
+      fileUpload.defaults.done({},{error:"new error"});
+      expect($scope.error_upload).to.equal(true);
+      expect($scope.error_message).to.equal('new error');
+    });
+
+  });
+
 
 });

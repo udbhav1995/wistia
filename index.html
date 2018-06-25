@@ -28,6 +28,12 @@
       <div class="progress mb-3" file-upload-progress="progress" ng-show="progress.loaded">
         <div class="progress-bar progress-bar-striped progress-bar-animated"  role="progressbar" ng-style="{width: num + '%'}" aria-valuenow="{{num}}" aria-valuemin="0" aria-valuemax="100">{{num}}%</div>
       </div>
+      <div class="alert alert-error alert-dismissible fade show" ng-if="error_upload" role="alert">
+        <strong>Error:</strong> {{error_message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <form name="upload-form" file-upload="options" enctype="multipart/form-data" novalidate="" autocomplete="off" method="POST">
         <button class="btn btn-outline-primary btn-lg mx-auto fileinput-button d-block" id="upload-btn" role="button">
           Upload Now

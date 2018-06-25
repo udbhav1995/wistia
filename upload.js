@@ -10,19 +10,27 @@ app.controller("uploadController",["$scope","fileUpload","$sce",function(sc,fu,s
   sc.progress={};
   sc.progress.loaded=0;
 
+  sc.error_upload=false;
   sc.uploading=true;
-  sc.video_src=sce.trustAsResourceUrl('http://fast.wistia.net/embed/iframe/avk9twrrbn');
+  sc.video_src=sce.trustAsResourceUrl('https://fast.wistia.net/embed/iframe/avk9twrrbn');
 
   vm.doneRequest=function (e, data) {
-    sc.progress.loaded=0;
-    sc.uploading=false;
-    if(typeof data != 'undefined' && typeof data.result != 'undefined' && typeof data.result.hashed_id != 'undefined'){
-      sc.video_url="http://fast.wistia.net/embed/iframe/"+data.result.hashed_id;
+    if(data && !data.error){
+      sc.progress.loaded=0;
+      sc.uploading=false;
+      if(typeof data != 'undefined' && typeof data.result != 'undefined' && typeof data.result.hashed_id != 'undefined'){
+        sc.video_url="https://fast.wistia.net/embed/iframe/"+data.result.hashed_id;
+      }
+      else {
+        sc.video_url='https://fast.wistia.net/embed/iframe/avk9twrrbn';
+      }
+      sc.video_src=sce.trustAsResourceUrl(sc.video_url);
     }
-    else {
-      sc.video_src=sce.trustAsResourceUrl('http://fast.wistia.net/embed/iframe/avk9twrrbn');
+    else{
+      sc.progress.loaded=0;
+      sc.error_upload=true
+      sc.error_message=data.error;
     }
-    sc.video_src=sce.trustAsResourceUrl(sc.video_url);
   }
 
   fu.defaults={
