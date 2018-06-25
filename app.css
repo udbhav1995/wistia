@@ -1,0 +1,60 @@
+/* app css stylesheet */
+
+html, body, .main-content{
+  position: relative;
+  height: 100%;
+}
+body{
+  background: linear-gradient(235deg, #1a61d7, #a41ad7);
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 30s ease infinite;
+  -moz-animation: AnimationName 30s ease infinite;
+  animation: AnimationName 30s ease infinite;
+}
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 88%}
+  50%{background-position:100% 13%}
+  100%{background-position:0% 88%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 88%}
+  50%{background-position:100% 13%}
+  100%{background-position:0% 88%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 88%}
+  50%{background-position:100% 13%}
+  100%{background-position:0% 88%}
+}
+.main-content{
+  box-shadow: 0px 4px 9px 3px #00000091;
+}
+
+/*jQuery-File-Upload*/
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px !important;
+  direction: ltr;
+  cursor: pointer;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
+/*---jquery-file-upload*/
