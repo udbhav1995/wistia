@@ -9,7 +9,7 @@
   <title>Process Street video upload</title>
   <meta name="description" content="Process Street video upload">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1./css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
   <link rel="stylesheet" href="./app.css">
 </head>
 <body>
@@ -35,6 +35,9 @@
         </button>
       </div>
       <form name="upload-form" file-upload="options" enctype="multipart/form-data" novalidate="" autocomplete="off" method="POST">
+        <div class="form-group">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
         <button class="btn btn-outline-primary btn-lg mx-auto fileinput-button d-block" id="upload-btn" role="button">
           Upload Now
           <input id="fileUpload" type="file" name="files[]" ng-disabled="disabled" />
